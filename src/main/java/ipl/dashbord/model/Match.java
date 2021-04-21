@@ -1,9 +1,12 @@
 package ipl.dashbord.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDate;
-
+@Entity
 public class Match {
 
+    @Id
     private long id;
     private String city;
     private LocalDate date;
@@ -13,7 +16,7 @@ public class Match {
     private String team2;
     private String tossWinner;
     private String tossDecision;
-    private String winner;
+    private String matchWinner;
     private String result;
     private String resultMargin;
     private String umpire1;
@@ -91,12 +94,12 @@ public class Match {
         this.tossDecision = tossDecision;
     }
 
-    public String getWinner() {
-        return winner;
+    public String getMatchWinner() {
+        return matchWinner;
     }
 
-    public void setWinner(String winner) {
-        this.winner = winner;
+    public void setMatchWinner(String matchWinner) {
+        this.matchWinner = matchWinner;
     }
 
     public String getResult() {

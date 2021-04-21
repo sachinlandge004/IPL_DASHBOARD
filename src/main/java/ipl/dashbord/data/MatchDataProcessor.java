@@ -17,18 +17,18 @@ public class MatchDataProcessor implements ItemProcessor<MatchInput, Match>{
 
         match.setId(Long.parseLong(matchInput.getId()));
         match.setCity(matchInput.getCity());
-        match.setDate(LocalDate.parse(matchInput.getCity()));
+        match.setDate(LocalDate.parse(matchInput.getDate()));
         match.setPlayerOfMatch(matchInput.getPlayer_of_match());
         match.setVenue(matchInput.getVenue());
 
         //set Team 1 and 2 depending upon innings order
         String firstInningsTeam,secondInningsTeam;
         if ("bat".equals(matchInput.getToss_decision())){
-            firstInningsTeam = match.getTossWinner();
+            firstInningsTeam = matchInput.getToss_winner();
             secondInningsTeam = matchInput.getToss_winner().equals(matchInput.getTeam1())
-            ? matchInput.getTeam1() : match.getTeam2();
+            ? matchInput.getTeam2() : matchInput.getTeam1();
         }else{
-            secondInningsTeam = match.getTeam2();
+            secondInningsTeam = matchInput.getToss_winner();;
             firstInningsTeam = matchInput.getToss_winner().equals(matchInput.getTeam1())
                     ? matchInput.getTeam2() : matchInput.getTeam1();
         }
@@ -37,7 +37,7 @@ public class MatchDataProcessor implements ItemProcessor<MatchInput, Match>{
         match.setTeam2(secondInningsTeam);
         match.setTossWinner(matchInput.getToss_winner());
         match.setTossDecision(matchInput.getToss_decision());
-        match.setWinner(matchInput.getWinner());
+        match.setMatchWinner(matchInput.getWinner());
         match.setResult(matchInput.getResult());
         match.setResultMargin(matchInput.getResult_margin());
         match.setUmpire1(matchInput.getUmpire1());
